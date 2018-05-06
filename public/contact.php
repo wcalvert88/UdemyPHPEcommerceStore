@@ -10,7 +10,8 @@ include(TEMPLATE_FRONT . DS . "header.php");
     <div class="row">
         <div class="col-lg-12 text-center">
             <h2 class="section-heading">Contact Us</h2>
-            <h3 class="section-subheading text-muted"></h3>
+            <h3 class="section-subheading">
+            <?php echo display_message(); ?></h3>
         </div>
     </div>
     <div class="row">
@@ -30,7 +31,7 @@ include(TEMPLATE_FRONT . DS . "header.php");
                             <p class="help-block text-danger"></p>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder=" Your Subject *" id="subject" required data-validation-required-message="Please enter your phone number.">
+                            <input type="text" name="subject"  class="form-control" placeholder=" Your Subject *" id="subject" required data-validation-required-message="Please enter your subject.">
                             <p class="help-block text-danger"></p>
                         </div>
                     </div>
