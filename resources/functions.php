@@ -59,4 +59,16 @@ DELIMETER;
     }
 }
 
+
+function get_categories() {
+    $query = query("SELECT * FROM categories ");
+    confirm($query);
+
+    while ($row = fetch_array($query)) {
+        $category_links = <<<DELIMETER
+        <a href='category.php?id={$row['cat_id']}' class='list-group-item'>{$row['cat_title']}</a>
+DELIMETER;
+    echo $category_links;
+    }
+}
 ?>
