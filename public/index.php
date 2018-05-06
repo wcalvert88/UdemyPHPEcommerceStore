@@ -52,10 +52,6 @@ include(TEMPLATE_FRONT . DS . "header.php");
 
     <div class="container">
 
-        <hr>
-
-        
-
     </div>
     <!-- /.container -->
 
