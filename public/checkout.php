@@ -17,6 +17,7 @@ include(TEMPLATE_FRONT . DS . "header.php");
 <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
   <input type="hidden" name="cmd" value="_cart">
   <input type="hidden" name="business" value="wcalvert88business@gmail.com">
+  <input type="hidden" name="currency_code" value="USD">
 
     <table class="table table-striped">
         <thead>
