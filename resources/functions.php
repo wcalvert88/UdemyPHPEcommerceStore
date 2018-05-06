@@ -123,8 +123,20 @@ DELIMETER;
 }
 
 function login_user() {
+    if(isset($_POST['submit'])){
+        $username = escape($_POST['username']);
+        $password = escape($_POST['password']);
 
-    
+    $query = query("SELECT * FROM users WHERE username = '{$username}' AND user_password = {$password}");
+    confirm($query);
+
+    if(mysqli_num_rows($query) == 0) {
+        redirect("login.php");
+    } else {
+        redirect("admin");
+    }
+    }
+
 }
 /*********************BACK END FUNCTIONS ****************/
 ?>
