@@ -1,5 +1,21 @@
 <?php 
 // Helper Functions
+
+function set_message($msg) {
+    if(!empty($msg)) {
+        $_SESSION['message'] = $msg;
+    } else {
+        $msg = "";
+    }
+}
+
+function display_message() {
+    if(isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+    }
+}
+
 function redirect($location) {
     header("Location: $location");
 }
@@ -10,6 +26,7 @@ function query($sql) {
 }
 
 function confirm($result) {
+    global $connection;
     if (!$result) {
         die("QUERY FAILED" . mysqli_error($connection));
     }
@@ -127,12 +144,14 @@ function login_user() {
         $username = escape($_POST['username']);
         $password = escape($_POST['password']);
 
-    $query = query("SELECT * FROM users WHERE username = '{$username}' AND user_password = {$password}");
+    $query = query("SELECT * FROM users WHERE username = '{$username}' AND user_password = '{$password}'");
     confirm($query);
 
     if(mysqli_num_rows($query) == 0) {
+        set_message("Your Username or Password is incorrect");
         redirect("login.php");
     } else {
+        set_message("Welcome to Admin {$username}");
         redirect("admin");
     }
     }
