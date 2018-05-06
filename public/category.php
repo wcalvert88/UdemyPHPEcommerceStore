@@ -28,7 +28,7 @@ include(TEMPLATE_FRONT . DS . "header.php");
         <!-- Page Features -->
         <div class="row text-center">
 
-            <?php echo get_products_in_cat_page() ?>;
+            <?php echo get_products_in_cat_page(); ?>
 
             
         </div>
