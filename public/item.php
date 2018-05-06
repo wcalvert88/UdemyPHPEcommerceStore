@@ -9,6 +9,13 @@ include(TEMPLATE_FRONT . DS . "header.php");
        <!-- Side Navigation -->
        <?php include(TEMPLATE_FRONT . DS . "side_nav.php"); ?>
 
+<?php 
+    $query = query("SELECT * FROM products WHERE product_id = " . escape($_GET['id']) . " ");
+    confirm($query);
+    while($row = fetch_array($query)):
+        
+
+?>
 <div class="col-md-9">
 
 <!--Row For Image and Short Description-->
@@ -26,9 +33,9 @@ include(TEMPLATE_FRONT . DS . "header.php");
          
 
     <div class="caption-full">
-        <h4><a href="#">Javascript Course</a> </h4>
+        <h4><a href="#"><?php echo $row['product_title']; ?></a> </h4>
         <hr>
-        <h4 class="">$24.99</h4>
+        <h4 class="">&#36;<?php echo $row['product_price']; ?></h4>
 
     <div class="ratings">
      
@@ -83,13 +90,7 @@ include(TEMPLATE_FRONT . DS . "header.php");
 
 <p></p>
            
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
+    <?php echo $row['product_description']; ?>
     </div>
     <div role="tabpanel" class="tab-pane" id="profile">
 
@@ -193,7 +194,9 @@ include(TEMPLATE_FRONT . DS . "header.php");
 
 
 
-</div>
+</div> <!-- col-md-9 ends here-->
+
+<?php endwhile; ?>
 
 </div>
     <!-- /.container -->
