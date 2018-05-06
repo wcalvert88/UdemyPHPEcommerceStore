@@ -37,29 +37,34 @@ if(isset($_GET['delete'])) {
 function cart() {
 
     foreach ($_SESSION as $name => $value) {
-        if(substr($name, 0, 8) == "product_") {
-            
-    
-            $query = query("SELECT * FROM products ");
-            confirm($query);
-    
-            while($row = fetch_array($query)){
-                $product = <<<DELIMETER
-                <tr>
-                    <td>{$row['product_title']}</td>
-                    <td>&#36;{$row['product_price']}</td>
-                    <td>{$row['product_quantity']}</td>
-                    <td>2</td>
-                    <td><a class="btn btn-warning" href="cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
-                        <a class="btn btn-success" href="cart.php?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
-                        <a class="btn btn-danger"href="cart.php?delete={$row['product_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
-                </tr>
+        if($value > 0) {
+            if(substr($name, 0, 8) == "product_") {
+
+                $length = strlen($name) - 8;
+                $id = substr($name, 8, $length);
+
+                $query = query("SELECT * FROM products WHERE product_id = " . escape($id) . " ");
+                confirm($query);
+        
+                while($row = fetch_array($query)){
+                    $product = <<<DELIMETER
+                    <tr>
+                        <td>{$row['product_title']}</td>
+                        <td>&#36;{$row['product_price']}</td>
+                        <td>{$row['product_quantity']}</td>
+                        <td>2</td>
+                        <td><a class="btn btn-warning" href="cart.php?remove={$row['product_id']}"><span class="glyphicon glyphicon-minus"></span></a>
+                            <a class="btn btn-success" href="cart.php?add={$row['product_id']}"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a class="btn btn-danger"href="cart.php?delete={$row['product_id']}"><span class="glyphicon glyphicon-remove"></span></a></td>
+                    </tr>
 DELIMETER;
-        echo $product;
-
-
+                echo $product;
+    
+    
+                }
             }
         }
+        
     }
 }
 
